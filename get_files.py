@@ -3,13 +3,12 @@ import asyncio
 import aiohttp  # pip install aiohttp
 import aiofiles  # pip install aiofiles
 
-if sys.version_info[0] == 3 and sys.version_info[1] >= 8 and sys.platform.startswith('win'):
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-
-REPORTS_FOLDER = "zips"
-FILES_PATH = os.path.join(REPORTS_FOLDER)
-
 def download_files_from_report(file_name):
+    if sys.version_info[0] == 3 and sys.version_info[1] >= 8 and sys.platform.startswith('win'):
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
+    REPORTS_FOLDER = "zips"
+    FILES_PATH = os.path.join(REPORTS_FOLDER)
     urls = []
     with open(f'{file_name}.txt', 'r', encoding='utf-8') as links:
         for line in links:
